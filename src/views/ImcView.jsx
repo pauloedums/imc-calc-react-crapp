@@ -1,26 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ImcController from "../controllers/ImcController.js";
+import Person from "../domain/Person.js";
 
-export default class ImcView extends React.Component {
-  constructor() {
-    super();
-    this.state = { person: {} };
-    this.controller = new ImcController();
-  }
+export default function ImcView(props) {
+  const [controller,] = useState(new ImcController())
+  const [person, setPerson] = useState(new Person(0.1, 0.1))
 
-  async componentDidUpdate(prevProps, prevState) {
-    if (this.props.person.height !== prevProps.person.height
-      || this.props.person.weight !== prevProps.person.weight) {
-        const newPerson = await this.controller.calculate(this.props.person);
-        this.setState({person: newPerson})
-      }
-  }
+  useEffect(() => {
+    async function fetchPerson() {
+      const newPerson = await controller.calculate(props.person);
+      setPerson(newPerson)
+    }
+    fetchPerson()
+  }, [props.person, controller])
 
-  render() {
-    return (<div className="result">
-      <label>Seu IMC &eacute;:</label>
-      {this.state.person.imc}&nbsp;
-      <span id="imc">{this.state.person.imcDescription}</span>
-    </div>)
-  }
+  useEffect(() => {
+    console.log("person changed !!!")
+  }, [person])
+
+  return (<div className="result">
+    <label>Seu IMC &eacute;:</label>
+    {person.imc}&nbsp;
+    <span id="imc">{person.imcDescription}</span>
+  </div>)
 }
