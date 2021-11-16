@@ -1,26 +1,9 @@
-import React, { useEffect, useState } from "react";
-import ImcController from "../controllers/ImcController.js";
-import Person from "../domain/Person.js";
+import React from "react"
 
-export default function ImcView(props) {
-  const [controller,] = useState(new ImcController())
-  const [person, setPerson] = useState(new Person(0.1, 0.1))
+const ImcView = (props) => <div className="result">
+  <label>Seu IMC &eacute;:</label>
+  {props.person?.imc}&nbsp;
+  <span id="imc">{props.person?.imcDescription}</span>
+</div>
 
-  useEffect(() => {
-    async function fetchPerson() {
-      const newPerson = await controller.calculate(props.person);
-      setPerson(newPerson)
-    }
-    fetchPerson()
-  }, [props.person, controller])
-
-  useEffect(() => {
-    console.log("person changed !!!")
-  }, [person])
-
-  return (<div className="result">
-    <label>Seu IMC &eacute;:</label>
-    {person.imc}&nbsp;
-    <span id="imc">{person.imcDescription}</span>
-  </div>)
-}
+export default ImcView
