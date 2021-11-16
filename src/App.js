@@ -6,14 +6,14 @@ import Person from "./domain/Person"
 
 export default function App() {
   const [controller,] = useState(new ImcController())
-  const [person, setPerson] = useState(null);
+  const [person, setPerson] = useState(null)
   const [height, setHeight] = useState(0.0)
   const [weight, setWeight] = useState(0.0)
 
   const calculate = async (evt) => {
     evt.preventDefault()
     const p = new Person(parseFloat(height),parseFloat(weight))
-    const newPerson = await controller.calculate(p);
+    const newPerson = await controller.calculate(p)
     setPerson(newPerson)
   };
 
