@@ -1,8 +1,8 @@
-import React, { useContext } from "react"
-import { PersonContext } from "../contexts/PersonContextProvider"
+import React from "react"
+import usePerson from "../hooks/usePerson"
 
 const ImcView = () => {
-  const { person } = useContext(PersonContext)
+  const [person,] = usePerson()
 
   return <div className="result">
     <label>Seu IMC &eacute;:</label>
