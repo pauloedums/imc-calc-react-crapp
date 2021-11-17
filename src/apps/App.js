@@ -1,7 +1,7 @@
 import React from "react";
 
-import ImcView from "./views/ImcView"
-import ImcForm from "./views/forms/ImcForm";
+import ImcView from "../views/ImcView"
+import ImcForm from "../views/forms/ImcForm";
 
 const App = () => (
   <div className="container">
