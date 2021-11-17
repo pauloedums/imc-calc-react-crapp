@@ -1,9 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
+import { PersonContext } from "../contexts/PersonContextProvider"
 
-const ImcView = (props) => <div className="result">
-  <label>Seu IMC &eacute;:</label>
-  {props.person?.imc}&nbsp;
-  <span id="imc">{props.person?.imcDescription}</span>
-</div>
+const ImcView = () => {
+  const { person } = useContext(PersonContext)
+
+  return <div className="result">
+    <label>Seu IMC &eacute;:</label>
+    {person?.imc}&nbsp;
+    <span id="imc">{person?.imcDescription}</span>
+  </div>
+}
 
 export default ImcView
