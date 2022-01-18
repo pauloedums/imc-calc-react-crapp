@@ -34,7 +34,9 @@ ReactDOM.render(
         <Route
           path="/other"
           element={<Suspense fallback={<span>loading other...</span>}>
-            <OtherApp />
+            <PersonContextProvider>
+              <OtherApp />
+            </PersonContextProvider>
           </Suspense>} />
       </Routes>
     </Router>
